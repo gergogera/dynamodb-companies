@@ -1,0 +1,1 @@
+# dynamodb-appsync-companies
