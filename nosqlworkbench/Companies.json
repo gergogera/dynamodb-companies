@@ -1,0 +1,398 @@
+{
+  "ModelName": "Companies",
+  "ModelMetadata": {
+    "Author": "",
+    "DateCreated": "Feb 23, 2021, 01:49 PM",
+    "DateLastModified": "Feb 25, 2021, 03:41 PM",
+    "Description": "Sample data model to store Companies - Employees - Projects - Tickets",
+    "AWSService": "Amazon DynamoDB",
+    "Version": "2.0"
+  },
+  "DataModel": [
+    {
+      "TableName": "companies",
+      "KeyAttributes": {
+        "PartitionKey": {
+          "AttributeName": "PK",
+          "AttributeType": "S"
+        },
+        "SortKey": {
+          "AttributeName": "SK",
+          "AttributeType": "S"
+        }
+      },
+      "NonKeyAttributes": [
+        {
+          "AttributeName": "CompanyLocation",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "CompanyWebsite",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "CompanyServices",
+          "AttributeType": "SS"
+        },
+        {
+          "AttributeName": "EmployeeFirstName",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "EmployeeLastName",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "TicketName",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "TicketDescription",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "CreatedDate",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "ProjectName",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "EmployeeProjectRole",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "Status",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "GSI_StatusCreatedDate_SK",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "GSI_StatusModifiedDate_SK",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "ModifiedDate",
+          "AttributeType": "S"
+        },
+        {
+          "AttributeName": "GSI_Owner_PK",
+          "AttributeType": "S"
+        }
+      ],
+      "TableFacets": [
+        {
+          "FacetName": "Company",
+          "KeyAttributeAlias": {
+            "PartitionKeyAlias": "CompanyName",
+            "SortKeyAlias": "CompanyName"
+          },
+          "TableData": [
+            {
+              "PK": {
+                "S": "COMPANY#crossover"
+              },
+              "SK": {
+                "S": "COMPANY#crossover"
+              },
+              "CompanyLocation": {
+                "S": "US"
+              },
+              "CompanyWebsite": {
+                "S": "https://www.crossover.com/"
+              },
+              "CompanyServices": {
+                "SS": [
+                  "Development Service"
+                ]
+              }
+            }
+          ],
+          "NonKeyAttributes": [
+            "CompanyLocation",
+            "CompanyWebsite",
+            "CompanyServices"
+          ],
+          "DataAccess": {
+            "MySql": {}
+          }
+        },
+        {
+          "FacetName": "Employee",
+          "KeyAttributeAlias": {
+            "PartitionKeyAlias": "EmployeeEmail",
+            "SortKeyAlias": "SK"
+          },
+          "TableData": [
+            {
+              "PK": {
+                "S": "EMPLOYEE#gergo.gera@aurea.com"
+              },
+              "SK": {
+                "S": "COMPANY#crossover"
+              },
+              "EmployeeFirstName": {
+                "S": "Gergo"
+              },
+              "EmployeeLastName": {
+                "S": "Gera"
+              }
+            },
+            {
+              "PK": {
+                "S": "EMPLOYEE#ionel.cocan@aurea.com"
+              },
+              "SK": {
+                "S": "COMPANY#crossover"
+              },
+              "EmployeeFirstName": {
+                "S": "Ionel"
+              },
+              "EmployeeLastName": {
+                "S": "Cocan"
+              }
+            },
+            {
+              "PK": {
+                "S": "EMPLOYEE#gergo.gera@aurea.com"
+              },
+              "SK": {
+                "S": "PROJECT#learn"
+              },
+              "EmployeeProjectRole": {
+                "S": "FEATURE DEV"
+              }
+            },
+            {
+              "PK": {
+                "S": "EMPLOYEE#ionel.cocan@aurea.com"
+              },
+              "SK": {
+                "S": "PROJECT#learn"
+              },
+              "EmployeeProjectRole": {
+                "S": "SEM"
+              }
+            }
+          ],
+          "NonKeyAttributes": [
+            "EmployeeFirstName",
+            "EmployeeLastName",
+            "EmployeeProjectRole"
+          ],
+          "DataAccess": {
+            "MySql": {}
+          }
+        },
+        {
+          "FacetName": "Project",
+          "KeyAttributeAlias": {
+            "PartitionKeyAlias": "CompanyName",
+            "SortKeyAlias": "ProjectId"
+          },
+          "TableData": [
+            {
+              "PK": {
+                "S": "PROJECT#learn"
+              },
+              "SK": {
+                "S": "COMPANY#crossover"
+              },
+              "CreatedDate": {
+                "S": "2021-02-21T12:00:00Z"
+              },
+              "ProjectName": {
+                "S": "Learning Project"
+              },
+              "Status": {
+                "S": "ACTIVE"
+              },
+              "GSI_StatusCreatedDate_SK": {
+                "S": "PROJECT#ACTIVE#2021-02-21T12:00:00Z"
+              },
+              "GSI_StatusModifiedDate_SK": {
+                "S": "PROJECT#ACTIVE#2021-02-22T12:00:00Z"
+              },
+              "ModifiedDate": {
+                "S": "2021-02-22T12:00:00Z"
+              },
+              "GSI_Owner_PK": {
+                "S": "EMPLOYEE#ionel.cocan@aurea.com"
+              }
+            }
+          ],
+          "NonKeyAttributes": [
+            "CreatedDate",
+            "ProjectName",
+            "Status",
+            "GSI_StatusCreatedDate_SK",
+            "GSI_StatusModifiedDate_SK",
+            "ModifiedDate",
+            "GSI_Owner_PK"
+          ],
+          "DataAccess": {
+            "MySql": {}
+          }
+        },
+        {
+          "FacetName": "Ticket",
+          "KeyAttributeAlias": {
+            "PartitionKeyAlias": "TicketId",
+            "SortKeyAlias": "ProjectId"
+          },
+          "TableData": [
+            {
+              "PK": {
+                "S": "TICKET#11111"
+              },
+              "SK": {
+                "S": "PROJECT#learn"
+              },
+              "TicketName": {
+                "S": "Dynamo Single Table design"
+              },
+              "TicketDescription": {
+                "S": "Learn about Single table design"
+              },
+              "CreatedDate": {
+                "S": "2021-02-23T14:34:05Z"
+              },
+              "Status": {
+                "S": "DONE"
+              },
+              "GSI_StatusCreatedDate_SK": {
+                "S": "TICKET#DONE#2021-02-23T14:34:05Z"
+              },
+              "GSI_StatusModifiedDate_SK": {
+                "S": "TICKET#DONE#2021-02-25T14:34:05Z"
+              },
+              "ModifiedDate": {
+                "S": "2021-02-25T14:34:05Z"
+              },
+              "GSI_Owner_PK": {
+                "S": "EMPLOYEE#gergo.gera@aurea.com"
+              }
+            },
+            {
+              "PK": {
+                "S": "TICKET#11112"
+              },
+              "SK": {
+                "S": "PROJECT#learn"
+              },
+              "TicketName": {
+                "S": "Dynamo GSI"
+              },
+              "TicketDescription": {
+                "S": "Learn about Global Secondary Indexes"
+              },
+              "CreatedDate": {
+                "S": "2021-02-24T14:34:05Z"
+              },
+              "Status": {
+                "S": "DONE"
+              },
+              "GSI_StatusCreatedDate_SK": {
+                "S": "TICKET#DONE#2021-02-24T14:34:05Z"
+              },
+              "GSI_StatusModifiedDate_SK": {
+                "S": "TICKET#DONE#2021-02-24T14:34:05Z"
+              },
+              "ModifiedDate": {
+                "S": "2021-02-24T14:34:05Z"
+              },
+              "GSI_Owner_PK": {
+                "S": "EMPLOYEE#gergo.gera@aurea.com"
+              }
+            }
+          ],
+          "NonKeyAttributes": [
+            "TicketName",
+            "TicketDescription",
+            "CreatedDate",
+            "Status",
+            "GSI_StatusCreatedDate_SK",
+            "GSI_StatusModifiedDate_SK",
+            "ModifiedDate",
+            "GSI_Owner_PK"
+          ],
+          "DataAccess": {
+            "MySql": {}
+          }
+        }
+      ],
+      "GlobalSecondaryIndexes": [
+        {
+          "IndexName": "GSI_Inverse",
+          "KeyAttributes": {
+            "PartitionKey": {
+              "AttributeName": "SK",
+              "AttributeType": "S"
+            },
+            "SortKey": {
+              "AttributeName": "PK",
+              "AttributeType": "S"
+            }
+          },
+          "Projection": {
+            "ProjectionType": "ALL"
+          }
+        },
+        {
+          "IndexName": "GSI_StatusCreatedDate",
+          "KeyAttributes": {
+            "PartitionKey": {
+              "AttributeName": "SK",
+              "AttributeType": "S"
+            },
+            "SortKey": {
+              "AttributeName": "GSI_StatusCreatedDate_SK",
+              "AttributeType": "S"
+            }
+          },
+          "Projection": {
+            "ProjectionType": "ALL"
+          }
+        },
+        {
+          "IndexName": "GSI_StatusModifiedDate",
+          "KeyAttributes": {
+            "PartitionKey": {
+              "AttributeName": "SK",
+              "AttributeType": "S"
+            },
+            "SortKey": {
+              "AttributeName": "GSI_StatusModifiedDate_SK",
+              "AttributeType": "S"
+            }
+          },
+          "Projection": {
+            "ProjectionType": "ALL"
+          }
+        },
+        {
+          "IndexName": "GSI_Owner",
+          "KeyAttributes": {
+            "PartitionKey": {
+              "AttributeName": "GSI_Owner_PK",
+              "AttributeType": "S"
+            },
+            "SortKey": {
+              "AttributeName": "PK",
+              "AttributeType": "S"
+            }
+          },
+          "Projection": {
+            "ProjectionType": "ALL"
+          }
+        }
+      ],
+      "DataAccess": {
+        "MySql": {}
+      }
+    }
+  ]
+}

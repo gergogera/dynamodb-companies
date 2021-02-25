@@ -8,20 +8,27 @@
     "build": "tsc",
     "watch": "tsc -w",
     "test": "jest",
-    "cdk": "cdk"
+    "cdk": "cdk",
+    "get-items": "npx ts-node --prefer-ts-exts queries/get-items-dynamo.ts",
+    "query-gsi-inverse": "npx ts-node --prefer-ts-exts queries/query-gsi-inverse.ts",
+    "query-gsi-owner": "npx ts-node --prefer-ts-exts queries/query-gsi-owner.ts",
+    "query-gsi-status-modified": "npx ts-node --prefer-ts-exts queries/query-gsi-status-modified-date.ts"
   },
   "devDependencies": {
-    "@aws-cdk/assert": "1.90.0",
+    "@aws-cdk/assert": "1.91.0",
     "@types/jest": "^26.0.10",
     "@types/node": "10.17.27",
+    "aws-cdk": "1.91.0",
+    "aws-cdk-dynamodb-seeder": "^1.56.1",
     "jest": "^26.4.2",
     "ts-jest": "^26.2.0",
-    "aws-cdk": "1.90.0",
     "ts-node": "^9.0.0",
     "typescript": "~3.9.7"
   },
   "dependencies": {
-    "@aws-cdk/core": "1.90.0",
+    "@aws-cdk/aws-dynamodb": "1.91.0",
+    "@aws-cdk/core": "1.91.0",
+    "@aws-sdk/client-dynamodb": "^3.6.1",
     "source-map-support": "^0.5.16"
   }
 }
