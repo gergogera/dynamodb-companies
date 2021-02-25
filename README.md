@@ -8,11 +8,22 @@
 
 ## Deploy and seed sample data
 ```js
+npm install
 cdk deploy --all --require-approval=never
 ```
 
 ## Access Patterns
 ![Access Patterns](/images/access.patterns.png)
+
+### PK
+expose access patterns:
+* Get Company/Employee/Project/Ticket
+* Write Company/Employee/Project/Ticket
+
+Example
+```js
+npm run get-items
+```
 
 ### GSI Inverse
 expose access patterns:
